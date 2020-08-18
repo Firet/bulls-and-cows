@@ -80,14 +80,17 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
         PrintLine(TEXT("Guess again. You have %i lives left."), Lives);
 }
 
-// bool UBullCowCartridge::IsIsogram(FString Word) const
-bool UBullCowCartridge::IsIsogram(FString Word)
+bool UBullCowCartridge::IsIsogram(FString Word) const
+// bool UBullCowCartridge::IsIsogram(FString Word)
 {
-    for (int32 Index = 0, Comparison = Index + 1; Comparison < Word.Len();  Comparison++) 
+    for (int32 Index = 0;  Index < Word.Len(); Index++) 
     {
-        if (Word[Index] == Word[Comparison]) 
+        for (int32 Comparison = Index + 1; Comparison < Word.Len(); Comparison++)
         {
-            return false;
+            if (Word[Index] == Word[Comparison]) 
+            {
+                return false;
+            }
         }
 
     }
