@@ -27,7 +27,7 @@ void UBullCowCartridge::SetupGame()
 {
     PrintLine(TEXT("Welcome to Bull Cow Game"));
     
-    HiddenWord = TEXT("cmasmas");
+    HiddenWord = TEXT("caprend");
     Lives = HiddenWord.Len();
     bGameOver = false;
     
@@ -58,7 +58,7 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
             return;
         }
 
-        if (!isIsogram(Guess))
+        if (!IsIsogram(Guess))
         {
 
             PrintLine(TEXT("No repeating letters, guess again."));
@@ -80,7 +80,17 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
         PrintLine(TEXT("Guess again. You have %i lives left."), Lives);
 }
 
-bool UBullCowCartridge::IsIsogram(FString Word) const
+// bool UBullCowCartridge::IsIsogram(FString Word) const
+bool UBullCowCartridge::IsIsogram(FString Word)
 {
+    for (int32 Index = 0, Comparison = Index + 1; Comparison < Word.Len();  Comparison++) 
+    {
+        if (Word[Index] == Word[Comparison]) 
+        {
+            return false;
+        }
+
+    }
+
     return true;
 }
