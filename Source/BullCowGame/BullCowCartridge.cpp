@@ -1,10 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 #include "BullCowCartridge.h"
 #include "HiddenWordList.h"
 
 void UBullCowCartridge::BeginPlay() // When the game starts
 {
     Super::BeginPlay();
+
+    Isograms = GetValidWords(Words);
 
     SetupGame();  
 }
@@ -25,7 +26,7 @@ void UBullCowCartridge::SetupGame()
 {
     PrintLine(TEXT("Welcome to Bull Cow Game"));
     
-    HiddenWord = GetValidWords(Words)[FMath::RandRange(0, GetValidWords(Words).Num() - 1)];
+    HiddenWord = Isograms[FMath::RandRange(0, Isograms.Num() - 1)];
     Lives = HiddenWord.Len();
     bGameOver = false;
     
