@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "BullCowCartridge.h"
+#include "HiddenWordList.h"
 
 void UBullCowCartridge::BeginPlay() // When the game starts
 {
@@ -7,11 +8,11 @@ void UBullCowCartridge::BeginPlay() // When the game starts
 
     SetupGame();
     
-    PrintLine(TEXT("The HiddenWord is: %s."), *HiddenWord);
-    // PrintLine(FString::Printf(TEXT("The HiddenWord is: %s"), *HiddenWord));    
+    PrintLine(TEXT("The number of possible words is %i."), Words.Num());
+    PrintLine(TEXT("The HiddenWord is: %s."), *HiddenWord);  
 }
 
-void UBullCowCartridge::OnInput(const FString& Input) // When the player hits enter
+void UBullCowCartridge::OnInput(const FString& PlayerInput) // When the player hits enter
 {
     if (bGameOver) 
     {
@@ -19,7 +20,7 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
         SetupGame();
     } else 
     {
-        ProcessGuess(Input);
+        ProcessGuess(PlayerInput);
     }
 }
 
@@ -27,7 +28,7 @@ void UBullCowCartridge::SetupGame()
 {
     PrintLine(TEXT("Welcome to Bull Cow Game"));
     
-    HiddenWord = TEXT("caprend");
+    HiddenWord = TEXT("cake");
     Lives = HiddenWord.Len();
     bGameOver = false;
     
@@ -81,7 +82,6 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
 }
 
 bool UBullCowCartridge::IsIsogram(FString Word) const
-// bool UBullCowCartridge::IsIsogram(FString Word)
 {
     for (int32 Index = 0;  Index < Word.Len(); Index++) 
     {
@@ -92,8 +92,16 @@ bool UBullCowCartridge::IsIsogram(FString Word) const
                 return false;
             }
         }
-
     }
 
     return true;
+}
+
+TArray<FString> UBullCowCartridge::GetValidWords(TArray<FString> WordList) const
+{
+    TArray<FString> ValidWords;
+
+
+
+    return ValidWords;
 }
