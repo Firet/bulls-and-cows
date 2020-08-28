@@ -27,11 +27,11 @@ void UBullCowCartridge::SetupGame()
     PrintLine(TEXT("Welcome to Bull Cow Game"));
     
     HiddenWord = Isograms[FMath::RandRange(0, Isograms.Num() - 1)];
-    Lives = HiddenWord.Len();
+    Lives = HiddenWord.Len() * 2;
     bGameOver = false;
     
     PrintLine(TEXT("Guess the %i letter word!"), HiddenWord.Len());
-    PrintLine(TEXT("The HiddenWord is: %s."), *HiddenWord);
+    // PrintLine(TEXT("The HiddenWord is: %s."), *HiddenWord);
 
     PrintLine(TEXT("You have %i lives"), Lives);
     PrintLine(TEXT("Type in your guess and \npress enter to continue..."));
